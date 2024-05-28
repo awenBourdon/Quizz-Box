@@ -23,8 +23,8 @@ const handleCopy = () => {setCopied(post.question);
           <Image
             src={post.creator.image}
             alt=""
-            width={40}
-            height={40}
+            width={60}
+            height={60}
             className="rounded-full object-contain"
           />
 
@@ -32,7 +32,7 @@ const handleCopy = () => {setCopied(post.question);
             <h3 className="font-satoshi font-semibold text-gray-900">
               {post.creator.username}
             </h3>
-            <p className="font-inter text-sm text-gray-500">
+            <p className="font-rubik text-sm text-gray-500">
               {post.creator.email}
             </p>
           </div>
@@ -47,8 +47,8 @@ const handleCopy = () => {setCopied(post.question);
             ?"assets/icons/tick.svg"
             :"assets/icons/copy.svg" 
           }
-          width={12}
-          height={12}           
+          width={20}
+          height={20}           
           />
         </div>
 
@@ -57,17 +57,17 @@ const handleCopy = () => {setCopied(post.question);
         #{post.question}
       </p>
       <p 
-      className="font-inter text-sm blue_gradient cursor-pointer"
+      className="font-rubik text-sm blue_gradient cursor-pointer"
       onClick={() => handleTagClick && handleTagClick(post.tag)}>
         #{post.tag}</p>
 
       {session?.user.id === post.creator._id && pathName === "/profile" && (
       <div className="mt-5 flex-center gap-4 border-t border-gray100 pt-3">
-        <p className="font-inter text-sm green_gradient cursor-pointer"
+        <p className="font-rubik text-sm blue_gradient cursor-pointer"
            onClick={handleEdit}>
           Modifier
         </p>
-        <p className="font-inter text-sm orange_gradient cursor-pointer"
+        <p className="font-rubik text-sm  cursor-pointer"
            onClick={handleDelete}>
           Supprimer
         </p>
