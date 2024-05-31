@@ -11,6 +11,10 @@ const {data: session } = useSession();
 const pathName = usePathname();
 const router = useRouter();
 
+if (!post || !post.creator) {
+return
+}
+
 const handleCopy = () => {setCopied(post.question);
   navigator.clipboard.writeText(post.question);
   setTimeout(() => setCopied(""),3000);
