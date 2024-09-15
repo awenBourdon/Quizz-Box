@@ -12,11 +12,7 @@ const pathName = usePathname();
 const router = useRouter();
 
 if (!post || !post.creator) {
-<<<<<<< HEAD
-  return
-=======
 return
->>>>>>> 68d89d02d545506eec041d4f1bb4215bbcf99778
 }
 
 const handleCopy = () => {setCopied(post.question);
