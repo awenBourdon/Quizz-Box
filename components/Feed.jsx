@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from 'react';
 import PostCard from './PostCard';
 
@@ -20,6 +19,7 @@ const PostCardList = ({ data, handleTagClick }) => {
 const Feed = () => {
   const [searchText, setSearchText] = useState('');
   const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const handleSearchChange = (e) => {
     setSearchText(e.target.value);
@@ -27,10 +27,16 @@ const Feed = () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch('/api/question');
-      const data = await response.json();
-
-      setPosts(data);
+      setIsLoading(true);
+      try {
+        const response = await fetch('/api/question');
+        const data = await response.json();
+        setPosts(data);
+      } catch (error) {
+        console.error('Error fetching posts:', error);
+      } finally {
+        setIsLoading(false);
+      }
     };
     fetchPosts();
   }, []);
@@ -38,7 +44,7 @@ const Feed = () => {
   return (
     <section className="feed">
       <form className="relative w-full flex-center">
-        <input 
+        <input
           type="text"
           placeholder="Rechercher"
           value={searchText}
@@ -47,14 +53,18 @@ const Feed = () => {
           className="search_input peer"
         />
       </form>
-
-      <PostCardList
-        data={posts}
-        handleTagClick={() => {}}
-      />
+      {isLoading ? (
+        <div className="flex justify-center items-center mt-16">
+          <div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-white-900"></div>
+        </div>
+      ) : (
+        <PostCardList
+          data={posts}
+          handleTagClick={() => {}}
+        />
+      )}
     </section>
   );
 };
 
 export default Feed;
-

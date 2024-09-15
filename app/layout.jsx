@@ -4,7 +4,7 @@ import Provider from '@components/Provider';
 
 export const metadata = {
     Title : "Quizz Box",
-    description : "Partagez vos rubikrogations"
+    description : "Partagez vos interrogations"
 }
 
 const RootLayout = ({children}) => {
